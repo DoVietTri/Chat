@@ -6,7 +6,32 @@ import useStyles from './styles';
 
 const SidebarBody = (props) => {
   const classes = useStyles();
-  const { title, path } = props;
+  const { title, path, data } = props;
+
+
+  const showDataUser = (data) => {
+    return data.map(user => {
+      return (
+        <Item
+          key={user._id}
+          name={user.username}
+          content={user.email}
+        />
+      )
+    })
+  }
+
+  // const showDataMessage = (data) => {
+  //   return data.map(message => {
+  //     return (
+  //       <Item
+  //         key={message._id}
+  //         name={message.username}
+  //       />
+  //     )
+  //   })
+  // }
+
   return (
     <Box
       className={classes.sidebarGroup}
@@ -63,28 +88,7 @@ const SidebarBody = (props) => {
 
       <div className={classes.sidebarBody}>
         <List className={classes.list} >
-
-          <Item
-            name={"Do Viet Tri"}
-            content={"Tri ne, how are you ?"}
-            time={"03:41 PM"}
-          />
-          <Item
-            name={"Do Viet Tri"}
-            content={"Tri ne, how are you ?"}
-            time={"03:41 PM"}
-          />
-          <Item
-            name={"Do Viet Tri"}
-            content={"Tri ne, how are you ?"}
-            time={"03:41 PM"}
-          />
-          <Item
-            name={"Do Viet Tri"}
-            content={"Tri ne, how are you ?"}
-            time={"03:41 PM"}
-          />
-
+          {path === '/friends' ? showDataUser(data) : ''}
         </List>
       </div>
     </Box>

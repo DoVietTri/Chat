@@ -11,13 +11,28 @@ const sendInvition = async (req, res) => {
 
     return res.status(400).json(new Response(400, null, null, arr));
   }
+  
   try {
+    let email = req.body.email;
+    let response = await contactService.sendInvition(req.user, email);
     
+    return res.status(response.statusCode).json(response);    
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+}
+
+const getAllFriends = async (req, res) => {
+  try {
+    let response = await contactService.getAllFriends(req.user._id);
+
+    return res.status(response.statusCode).json(response);
   } catch (error) {
     return res.status(500).json(error);
   }
 }
 
 module.exports = {
-  sendInvition
+  sendInvition,
+  getAllFriends
 }

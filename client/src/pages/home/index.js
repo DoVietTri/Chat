@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Wrapper from '../../layouts/wrapper';
 import useStyles from './styles';
 import AreaChat from './area-chat';
@@ -8,6 +8,10 @@ import { useLocation } from 'react-router-dom';
 const Home = () => {
   const classes = useStyles();
   const path = useLocation();
+
+  useEffect(() => {
+
+  }, []);
 
   return (
     <Wrapper>

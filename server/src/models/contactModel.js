@@ -6,4 +6,26 @@ const contactSchema = mongoose.Schema({
   status: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('Contact', contactSchema, 'contact'); 
+contactSchema.statics = {
+  addNewContact(data) {
+    return this.create(data);
+  },
+  getAllFriends(id) {
+    return this.find({
+      $and: [
+        {
+          $or: [
+            { userId: id },
+            { contactId: id }
+          ]
+        },
+        { status: true }
+      ]
+    })
+      // .populate('userId', { username: 1, email: 1, avatar: 1 })
+      // .populate('contactId', { username: 1, email: 1, avatar: 1 })
+      .exec();
+  }
+}
+
+module.exports = mongoose.model('Contact', contactSchema, 'contact');

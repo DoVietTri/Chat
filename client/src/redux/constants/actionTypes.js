@@ -1,2 +1,6 @@
 
 export const LOGIN = 'LOGIN';
+export const GET_ALL_FRIENDS = 'GET_ALL_FRIENDS';
+export const GET_ALL_FRIENDS_SUCCESS = 'GET_ALL_FRIENDS_SUCCESS';
+export const GET_PROFILE = 'GET_PROFILE';
+export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';

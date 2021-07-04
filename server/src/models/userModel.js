@@ -10,13 +10,16 @@ const userSchema = mongoose.Schema({
 
 userSchema.statics = {
   findById(id) {
-    return this.find({ _id: id }).exec();
+    return this.findOne({ _id: id }).exec();
   },
   addNew(data) {
     return this.create(data);
   },
   findByEmail(email) {
     return this.findOne({ email: email }).exec();
+  },
+  getNormalUserDataById(id) {
+    return this.findOne({ _id: id }, { username: 1, email: 1, avatar: 1 }).exec();
   }
 }
 

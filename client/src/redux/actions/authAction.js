@@ -6,3 +6,16 @@ export const login = (data) => {
     payload: data
   }
 }
+
+export const profile = () => {
+  return {
+    type: Types.GET_PROFILE
+  }
+}
+
+export const profileSuccess = (data) => {
+  return {
+    type: Types.GET_PROFILE_SUCCESS,
+    payload: data
+  }
+}

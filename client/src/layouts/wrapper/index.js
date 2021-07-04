@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Drawer, List, ListItem, Avatar, Tooltip, CssBaseline } from '@material-ui/core';
 import { ChatBubbleOutlineOutlined, PermIdentityOutlined } from '@material-ui/icons';
 import { NavLink } from 'react-router-dom';
 import useStyles from './styles';
 import logo from '../../assets/images/logo.svg';
+import { profile } from '../../redux/actions/authAction';
+import io from 'socket.io-client';
 
 const Wrapper = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const userProfile = useSelector(state => state.auth.profile);
+  const userId = userProfile._id
 
+  useEffect(() => {
+    dispatch(profile());
+
+    const chatSocket = io(`${process.env.REACT_APP_CHAT_URL}:${process.env.REACT_APP_CHAT_PORT}?userId=${userId}`, {
+      autoConnect: false
+    });
+    chatSocket.open();
+    global.chatSocket = chatSocket;
+    
+  }, [dispatch, userId]);
+  
   return (
     <div className={classes.root}>
       <CssBaseline />

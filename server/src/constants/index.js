@@ -16,12 +16,15 @@ const transValidation = {
 const transError = {
   email_exists: 'Tài khoản đã tồn tại trong hệ thống',
   email_not_exists: 'Tài khoản không tồn tại trong hệ thống',
-  password_wrong: 'Sai mật khẩu'
+  password_wrong: 'Sai mật khẩu',
+  not_invited: 'Không thể kết bạn với chính mình'
 }
 
 const transSuccess = {
   create_user_success: 'Tạo tài khoản thành công',
-  login_success: 'Đăng nhập thành công'
+  login_success: 'Đăng nhập thành công',
+  send_invition_success: 'Gửi lời mời kết bạn thành công, vui lòng chờ xác nhận',
+  get_all_friends_success: 'Danh sách bạn bè'
 }
 
 module.exports = {
